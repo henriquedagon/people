@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.LockModeType;
-import java.math.BigInteger;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +18,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
 
 
     /**
-     * Find all loan ids that should be expired.
+     * Find all candidates in phase and area.
      *
      * @param  phase        Phase.
      * @param  area         Area.

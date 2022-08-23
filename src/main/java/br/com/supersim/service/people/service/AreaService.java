@@ -1,7 +1,6 @@
 package br.com.supersim.service.people.service;
 
 import br.com.supersim.service.people.domain.Area;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +18,5 @@ public class AreaService {
     public List<Map<String, Object>> findAll() {
         return Area.getAllAsJson();
     }
-
-//    @RequestMapping(method = {RequestMethod.GET}, path = {"{id}"})
-//    public Candidate findById(
-//            @PathVariable(value = "id")
-//            Long id) {
-//        return this.candidateRepository.findById(id).orElse(null);
-//    }
 
 }
