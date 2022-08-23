@@ -1,8 +1,5 @@
 package br.com.supersim.service.people.domain;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
