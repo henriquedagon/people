@@ -1,0 +1,15 @@
+.add-candidate-modal {
+    text-align: center;
+}
+
+.add-candidate-modal div {
+    display: block;
+}
+
+.add-candidate-modal div select {
+    width: 80%;
+}
+
+.add-candidate-modal div input {
+    width: 79%;
+}
