@@ -1,5 +1,15 @@
-.form {
+.candidates-form {
     border-radius: 12px;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
     border: 1px solid black;
+}
+
+.candidates-form div {
+    display: inline-block;
+    margin: 8px;
+    width: 120px;
+}
+
+.candidates-form div select {
+    width: 120px;
 }

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import CandidatesTable from "./CandidatesTable";
 import classes from "./Candidates.module.css"
 import CandidatesForm from "./CandidatesForm";
+import Button from "../../UI/Button";
+import AddCandidateModal from "./AddCandidateModal";
 
 const candidatesDescription = {
     id: 'Id',
@@ -11,40 +13,10 @@ const candidatesDescription = {
     phase: 'Phase'
 }
 
-const DUMMY_CANDIDATES = [
-    {
-        id: 0,
-        name: 'Tadeu Kwiatkowski Ribeiro',
-        area: 'data',
-        position: 'Data Analyst Senior',
-        phase: 'application'
-    },
-    {
-        id: 1,
-        name: 'Michel Morais Ferreira',
-        area: 'tech',
-        position: 'Developer Senior',
-        phase: 'declined'
-    },
-    {
-        id: 2,
-        name: 'José Fernandes Almeida Junior',
-        area: 'risk',
-        position: 'Risk Analyst Mid-level',
-        phase: 'approved'
-    },
-    {
-        id: 3,
-        name: 'Debora Dias de Alexandria Gonçalves',
-        area: 'legal',
-        position: 'Lawyer',
-        phase: 'application'
-    }
-]
-
 const Candidates = props => {
     const [candidates, setCandidates] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const [showAddCandidateModal, setShowAddCandidateModal] = useState(false)
 
     async function fetchCandidatesHandler (selectedFilters) {
         setIsLoading(true)
@@ -56,8 +28,16 @@ const Candidates = props => {
         setIsLoading(false)
     }
 
+    const toggleAddCandidateModalHandler = () => {
+        setShowAddCandidateModal(prevState => !prevState)
+    }
+
     return (
         <section className={classes.candidates}>
+            {showAddCandidateModal && <AddCandidateModal onClose={toggleAddCandidateModalHandler}/>}
+            <div className={classes.edition}>
+                <Button label="Add" onClick={toggleAddCandidateModalHandler}/>
+            </div>
             <CandidatesForm onChangeFilters={fetchCandidatesHandler}/>
             {!isLoading && <CandidatesTable 
                 candidates={candidates}

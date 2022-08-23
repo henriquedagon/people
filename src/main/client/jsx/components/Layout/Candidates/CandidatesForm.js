@@ -28,7 +28,7 @@ const CandidatesForm = props => {
     }
 
     return (
-        <div className={classes.form}>
+        <div className={classes["candidates-form"]}>
             <Select 
                 label="Phase" 
                 ref={phaseSelectRef} 
