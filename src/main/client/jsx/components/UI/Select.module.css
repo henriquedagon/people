@@ -1,0 +1,17 @@
+.select {
+    display: inline-block;
+    margin: 8px;
+}
+
+    label {
+        font-weight: bold;
+        display: block;
+    }
+
+    select {
+        width: 120px;
+        height: 24px;
+        margin: 4px 0;
+        border-radius: 4px;
+    }
+

@@ -1,0 +1,17 @@
+.candidate {
+    border: 1px solid black;
+    list-style: none;
+    padding: 15px;
+}
+
+    .candidate td:not(.name) {
+        text-align: center;
+        width: 150px;
+        /* padding: 5px; */
+    }
+
+    .name {
+        text-align: center;
+        width: calc(100% - 30px);
+        /* display: inline-block; */
+    }

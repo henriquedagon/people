@@ -1,0 +1,14 @@
+.main-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 8px;
+    color: white;
+    background: #4f005f;
+}
+
+    h1 {
+        margin: 8px;
+    }
