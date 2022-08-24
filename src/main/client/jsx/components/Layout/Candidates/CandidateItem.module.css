@@ -6,7 +6,7 @@
 
     .candidate td:not(.name) {
         text-align: center;
-        width: 150px;
+        width: 130px;
         /* padding: 5px; */
     }
 
