@@ -72,7 +72,7 @@ const EditCandidateModal = (props) => {
                     ref={phaseRef} 
                     options={phases}
                     input={{
-                        defaultValue: props.candidate.phase
+                        selected: props.candidate.phase
                     }}
                 />
                 <Select 
@@ -80,8 +80,8 @@ const EditCandidateModal = (props) => {
                     ref={areaRef}
                     options={areas}
                     input={{
-                        defaultValue: props.candidate.area
-                    }} 
+                        selected: props.candidate.phase
+                    }}
                 />
                  <Button label="Send"/>
             </form>
