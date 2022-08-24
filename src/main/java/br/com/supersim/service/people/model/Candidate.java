@@ -1,9 +1,11 @@
 package br.com.supersim.service.people.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.supersim.service.people.domain.Area;
+import br.com.supersim.service.people.domain.Phase;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
 
 @Entity
 public class Candidate {

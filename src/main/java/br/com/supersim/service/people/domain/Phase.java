@@ -1,10 +1,15 @@
 package br.com.supersim.service.people.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@ApiModel
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Phase {
 
     APPLICATION(0L, "application", "Application"),

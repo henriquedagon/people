@@ -1,5 +1,7 @@
 package br.com.supersim.service.people.service;
 
+//import br.com.supersim.service.people.domain.Area;
+//import br.com.supersim.service.people.domain.Phase;
 import br.com.supersim.service.people.model.Candidate;
 import br.com.supersim.service.people.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Service
@@ -34,9 +35,9 @@ public class CandidateService {
 
     @RequestMapping(method = {RequestMethod.GET}, path = {"all/search"})
     public List<Candidate> findAllWithFilters(
-            @RequestParam String phase,
-            @RequestParam String area) {
-        return this.candidateRepository.findAllWithFilters(phase, area);
+            @RequestParam String phaseValue,
+            @RequestParam String areaValue) {
+        return this.candidateRepository.findAllWithFilters(phaseValue, areaValue);
     }
 
     @ResponseBody
@@ -68,11 +69,8 @@ public class CandidateService {
     public void delete(
             @PathVariable(value = "id")
             Long id) {
-        Candidate candidate = this.candidateRepository.findById(id).orElse(null);
-
-        if (candidate != null){
-            this.candidateRepository.delete(candidate);
-        }
+        this.candidateRepository.findById(id)
+                .ifPresent(candidate -> this.candidateRepository.delete(candidate));   //Removes if null statement
     }
 
 }

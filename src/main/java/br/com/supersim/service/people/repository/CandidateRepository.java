@@ -1,5 +1,7 @@
 package br.com.supersim.service.people.repository;
 
+import br.com.supersim.service.people.domain.Area;
+import br.com.supersim.service.people.domain.Phase;
 import br.com.supersim.service.people.model.Candidate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
@@ -20,8 +22,8 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     /**
      * Find all candidates in phase and area.
      *
-     * @param  phase        Phase.
-     * @param  area         Area.
+     * @param  phaseValue   Phase value.
+     * @param  areaValue    Area value.
      * @return              Candidates.
      */
     @Transactional(
@@ -31,13 +33,17 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     )
     @Query(
             nativeQuery = true,
-            value = "SELECT * FROM Candidate candidate WHERE phase = :phase and area = :area"
+            value = ("SELECT * FROM Candidate candidate " +
+                    "WHERE phase = :phaseValue " +
+//                    "and area ->> 'value' = :areaValue"
+                    "and area = :areaValue"
+            )
     )
     List<Candidate> findAllWithFilters(
-            @Param("phase")
-            String phase,
-            @Param("area")
-            String area);
+            @Param("phaseValue")
+                    String phaseValue,
+            @Param("areaValue")
+                    String areaValue);
 
     /**
      * Finds a candidate by its identifier.

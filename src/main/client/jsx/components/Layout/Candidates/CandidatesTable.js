@@ -19,7 +19,8 @@ const CandidatesTable = props => {
                     <CandidateItem
                         key={candidate.id}
                         {...candidate}
-                    />
+                        onEditCandidate={props.onEditCandidate}
+                        />
                     )}
                 </tbody>
         </table>

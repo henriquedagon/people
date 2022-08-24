@@ -1,10 +1,19 @@
 package br.com.supersim.service.people.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+
+//import org.coldis.library.helper.EnumHelper;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@ApiModel
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Area {
 
     TECH(0L, "tech", "Tech"),
@@ -52,4 +61,24 @@ public enum Area {
                 .map(Area::toJson)
                 .collect(Collectors.toList());
     }
+
+//    /**
+//     * Gets the value of the enum from a given JSON.
+//     *
+//     * @param  id              Identifier.
+//     * @param  name            Name.
+//     * @param  value           Value.
+//     * @return                 The value of the enum from a given JSON.
+//     */
+//    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+//    public static Area fromJson(
+//            @JsonProperty(value = "id")
+//            final Long id,
+//            @JsonProperty(value = "name")
+//            final String name,
+//            @JsonProperty(value = "value")
+//            final String value) {
+//        return EnumHelper.getById(Area.class, id);
+//    }
+
 }
