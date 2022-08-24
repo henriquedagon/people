@@ -15,7 +15,7 @@ const CandidateItem = props => {
             <td>{props.phase}</td>
             <td>{props.position}</td>
             <td>{props.area}</td>
-            <Button onClick={editCandidateHanlder} label="Edit"/>
+            <td><Button onClick={editCandidateHanlder} label="Edit"/></td>
         </tr>
     )
 }
