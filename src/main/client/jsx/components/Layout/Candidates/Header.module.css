@@ -5,10 +5,31 @@
     left: 0;
     margin: 0;
     padding: 8px;
-    color: white;
     background: #4f005f;
+
 }
 
-    h1 {
+    .main-header div,
+    .main-header ul {
+        display: inline-block;
+        list-style: none;
+    }
+
+    .main-header__brand {
         margin: 8px;
     }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    li {
+        color: white;
+    }
+
+    ul {
+        width: calc(100% - 130px);
+        text-align: right;
+    }
+
