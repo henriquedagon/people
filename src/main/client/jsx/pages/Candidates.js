@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import CandidatesTable from "./CandidatesTable";
+import CandidatesTable from "../components/Layout/Candidates/CandidatesTable";
 import classes from "./Candidates.module.css"
-import CandidatesForm from "./CandidatesForm";
-import Button from "../../UI/Button";
-import AddCandidateModal from "./AddCandidateModal";
-import EditCandidateModal from "./EditCandidateModal";
+import CandidatesForm from "../components/Layout/Candidates/CandidatesForm";
+import Button from "../components/UI/Button";
+import AddCandidateModal from "../components/Layout/Candidates/AddCandidateModal";
+import EditCandidateModal from "../components/Layout/Candidates/EditCandidateModal";
 
 const candidatesDescription = {
     id: 'Id',
