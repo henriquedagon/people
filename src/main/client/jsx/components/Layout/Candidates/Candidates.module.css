@@ -6,6 +6,7 @@
         text-align: center;
     }
 
-    .edition {
+    .add-button {
         text-align: right;
+        margin: 16px;
     }

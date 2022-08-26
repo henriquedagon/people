@@ -60,7 +60,7 @@ const Candidates = props => {
                                             candidate={candidateToEdit}
                                         />
                 }
-            <div className={classes.edition}>
+            <div className={classes['add-button']}>
                 <Button label="Add" onClick={toggleAddCandidateModalHandler}/>
             </div>
             <CandidatesForm onChangeFilters={fetchCandidatesHandler}/>
