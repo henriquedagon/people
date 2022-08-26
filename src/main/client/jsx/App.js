@@ -15,7 +15,7 @@ function App() {
         <Route path="/welcome">
           <Welcome/>
         </Route>
-        <Route path="/candidate">
+        <Route path="/candidate" exact>
           <Candidates/>
         </Route>
       </main>
