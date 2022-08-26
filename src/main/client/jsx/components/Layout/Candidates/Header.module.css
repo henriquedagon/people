@@ -4,19 +4,18 @@
     top: 0;
     left: 0;
     margin: 0;
-    padding: 8px;
     background: #4f005f;
-
 }
 
     .main-header div,
     .main-header ul {
         display: inline-block;
         list-style: none;
+        vertical-align: middle;
     }
 
     .main-header__brand {
-        margin: 8px;
+        margin: 0 16px;
     }
 
     a {
@@ -29,7 +28,7 @@
     }
 
     ul {
-        width: calc(100% - 130px);
+        width: calc(100% - 160px);
         text-align: right;
     }
 

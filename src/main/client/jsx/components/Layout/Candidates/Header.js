@@ -5,8 +5,8 @@ import classes from "./Header.module.css"
 const Header = () => {
     return (
         <header className={classes['main-header']}>
-            <div>
-                <Link to="/welcome" className={classes['main-header__brand']}>
+            <div className={classes['main-header__brand']}>
+                <Link to="/welcome">
                     <h1>People</h1>
                 </Link>
             </div>
