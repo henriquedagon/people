@@ -1,6 +1,6 @@
 import React from "react"
 import Header from "./components/Layout/Candidates/Header";
-import Candidates from "./components/Layout/Candidates/Candidates";
+import Candidates from "./pages/Candidates";
 import { Redirect, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 
@@ -15,7 +15,7 @@ function App() {
         <Route path="/welcome">
           <Welcome/>
         </Route>
-        <Route path="/candidates">
+        <Route path="/candidate">
           <Candidates/>
         </Route>
       </main>
