@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../../UI/Button"
 import modules from "./CandidateItem.module.css"
 
@@ -10,8 +11,16 @@ const CandidateItem = props => {
 
     return (
         <tr className={modules.candidate} key={props.id}>
-            <td>{`#${props.id}`}</td>
-            <td className={modules.name}>{props.name}</td>
+            <td>
+                <Link to={`/candidate/${props.id}`}>
+                    {`#${props.id}`}
+                </Link>
+            </td>
+            <td className={modules.name}>
+                <Link to={`/candidate/${props.id}`}>
+                    {props.name}
+                </Link>
+            </td>
             <td>{props.phase}</td>
             <td>{props.position}</td>
             <td>{props.area}</td>

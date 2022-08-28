@@ -15,3 +15,7 @@
         width: calc(100% - 30px);
         /* display: inline-block; */
     }
+
+    .candidate a {
+        color: black;
+    }
