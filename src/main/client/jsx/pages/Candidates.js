@@ -63,8 +63,8 @@ const Candidates = props => {
             <div className={classes['add-button']}>
                 <Button label="Add" onClick={toggleAddCandidateModalHandler}/>
             </div>
-            <CandidatesForm onChangeFilters={fetchCandidatesHandler}/>
-            {!isLoading && <CandidatesTable 
+            <CandidatesForm className={classes.wrapper} onChangeFilters={fetchCandidatesHandler}/>
+            {!isLoading && <CandidatesTable className={classes.wrapper}
                 candidates={candidates}
                 descriptions={candidatesDescription} 
                 onEditCandidate={editCandidateHandler}
