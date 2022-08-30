@@ -20,24 +20,3 @@ const Header = () => {
 }
 
 export default Header 
-
-    // <header class="main-header">
-    //     <div>
-    //         <a class="main-header__brand" href="index.html">
-    //             uHost
-    //         </a>
-    //     </div>
-    //     <nav class="main-nav">
-    //         <ul class="main-nav__items">
-    //             <li class="main-nav__item">
-    //                 <a href="packages/index.html">Packages</a>
-    //             </li>
-    //             <li class="main-nav__item">
-    //                 <a href="customers/index.html">Customers</a>
-    //             </li>
-    //             <li class="main-nav__item main-nav__item--cta">
-    //                 <a href="start-hosting/index.html">Start Hosting</a>
-    //             </li>
-    //         </ul>
-    //     </nav>
-    // </header>
