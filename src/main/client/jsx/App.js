@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Candidate from "./pages/Candidate";
 import Layout from "./components/Layout/Layout";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path="/candidate/:candidateId">
           <Candidate/>
+        </Route>
+        <Route path="*">
+          <NotFound/>
         </Route>
       </Switch>
     </Layout>
