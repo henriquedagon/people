@@ -4,6 +4,8 @@ import Input from "../../UI/Input";
 import Button from "../../UI/Button";
 import Select from "../../UI/Select";
 
+import CandidateService from "../../../service/candidate-service"
+
 import classes from "./AddCandidateModal.module.css"
 
 const phases = [
@@ -31,13 +33,8 @@ const AddCandidateModal = (props) => {
         }
     }
 
-    async function addCandidateHandler (candidateData) {
-        const response = await fetch('http://localhost:8080/api/candidate', {
-            method: 'POST', 
-            body: JSON.stringify(candidateData), 
-            headers: {'Content-Type': 'application/json'
-        }})
-        const data = await response.json()
+    const addCandidateHandler = (candidateData) => {
+        CandidateService.addCandidate(candidateData)
     }
 
     const submitHandler = (event) => {

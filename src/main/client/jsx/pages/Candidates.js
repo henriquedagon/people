@@ -6,6 +6,8 @@ import Button from "../components/UI/Button";
 import AddCandidateModal from "../components/Layout/Candidates/AddCandidateModal";
 import EditCandidateModal from "../components/Layout/Candidates/EditCandidateModal";
 
+import CandidateService from "../service/candidate-service"
+
 const candidatesDescription = {
     id: 'Id',
     name: 'Name',
@@ -23,20 +25,14 @@ const Candidates = props => {
 
     async function fetchCandidatesHandler (selectedFilters) {
         setIsLoading(true)
-        const {phase, area} = selectedFilters
-        const url = `http://localhost:8080/api/candidate/all/search?phaseValue=${phase}&areaValue=${area}`
-        const response = await fetch(url)
-        const data = await response.json()
+        const data = await CandidateService.getCandidates(selectedFilters)
         setCandidates(data)
         setIsLoading(false)
     }
 
     async function fetchCandidateById (id) {
-        const url = `http://localhost:8080/api/candidate/${id}`
-        const response = await fetch(url)
-        const data = await response.json()
+        const data = await CandidateService.getCandidateById(id)
         setCandidateToEdit(data)
-        console.log(data)
     }
 
     const toggleAddCandidateModalHandler = () => {
