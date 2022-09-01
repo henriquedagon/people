@@ -1,22 +1,20 @@
+// const axios = require('axios').default;
+import api from "./api"
 
 const CandidateService = {
 
     addCandidate: async (candidateData) => {
-        const response = await fetch('http://localhost:8080/api/candidate', {
-            method: 'POST', 
-            body: JSON.stringify(candidateData), 
-            headers: {'Content-Type': 'application/json'
-        }})
-        const data = await response.json()
-        return data
+        // return axios.post('http://localhost:8080/api/candidate', candidateData)
+        return api.post('/candidate', candidateData)
     },
 
     getCandidates : async (selectedFilters) => {
         const {phase, area} = selectedFilters
-        const url = `http://localhost:8080/api/candidate/all/search?phaseValue=${phase}&areaValue=${area}`
-        const response = await fetch(url)
-        const data = await response.json()
-        return data
+        return api.get(`/candidate/all/search?phaseValue=${phase}&areaValue=${area}`)
+        // const url = `http://localhost:8080/api/candidate/all/search?phaseValue=${phase}&areaValue=${area}`
+        // const response = await fetch(url)
+        // const data = await response.json()
+        // return data
     },
 
     getCandidateById : async (id) => {
