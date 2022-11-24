@@ -1,5 +1,6 @@
 package br.com.supersim.service.people.model;
 
+import br.com.supersim.service.people.common.HashMapConverter;
 import br.com.supersim.service.people.domain.Area;
 import br.com.supersim.service.people.domain.Phase;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -16,7 +17,7 @@ public class Candidate {
 
     private String name;
 
-    private String area;
+    private Area area;
 
     private String position;
 
@@ -29,7 +30,7 @@ public class Candidate {
         return id;
     }
 
-    public Candidate(String name, String area, String position, String phase) {
+    public Candidate(String name, Area area, String position, String phase) {
         this.name = name;
         this.area = area;
         this.position = position;
@@ -48,11 +49,13 @@ public class Candidate {
         this.name = name;
     }
 
-    public String getArea() {
+    @Column(columnDefinition = "JSONB")
+    @Convert(converter = HashMapConverter.class)
+    public Area getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Area area) {
         this.area = area;
     }
 
