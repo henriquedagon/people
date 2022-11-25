@@ -21,6 +21,7 @@ class PeopleApplicationTests {
 	void contextLoads() {
 	}
 
+	// https://www.baeldung.com/hibernate-persist-json-object
 	@Test
 	public void testJsonSerialization() {
 		Candidate candidate = new Candidate("Name", Area.DATA, "Position", "Phase");
