@@ -1,9 +1,16 @@
 package br.com.supersim.service.people.model;
 
+import br.com.supersim.service.people.common.HashMapConverter;
 import br.com.supersim.service.people.domain.Area;
 import br.com.supersim.service.people.domain.Phase;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -22,7 +29,20 @@ public class Candidate {
 
     private String phase;
 
+    private String attributesJson;
+
+    @Convert(converter = HashMapConverter.class)
+    private Map<String, Object> attributes;
+
     public Candidate() {
+    }
+
+    public Candidate(Long id, String name, String area, String position, String phase) {
+        this.id = id;
+        this.name = name;
+        this.area = area;
+        this.position = position;
+        this.phase = phase;
     }
 
     public Long getId() {
@@ -70,6 +90,32 @@ public class Candidate {
 
     public void setPhase(String phase) {
         this.phase = phase;
+    }
+
+    public String getAttributesJson() {
+        return attributesJson;
+    }
+
+    public void setAttributesJson(String attributeJson) {
+        this.attributesJson = attributeJson;
+    }
+
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, Object> attributes) {
+        this.attributes = attributes;
+    }
+
+    public void serializeAttributes() throws JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        this.attributesJson = objectMapper.writeValueAsString(this.attributes);
+    }
+
+    public void deserializeAttributes() throws IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        this.attributes = objectMapper.readValue(this.attributesJson, new TypeReference<>() {});
     }
 
     @Override
