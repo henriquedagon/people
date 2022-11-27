@@ -6,8 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.persistence.AttributeConverter;
 import java.io.IOException;
 import java.util.Map;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 public class HashMapConverter implements AttributeConverter<Map<String, Object>, String> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(HashMapConverter.class);
 
     final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -18,8 +21,7 @@ public class HashMapConverter implements AttributeConverter<Map<String, Object>,
         try {
             customerInfoJson = objectMapper.writeValueAsString(customerInfo);
         } catch (final JsonProcessingException e) {
-            System.out.println("JSON writing error" + e);
-//            logger.error("JSON writing error", e);
+           HashMapConverter.LOGGER.error("JSON writing error", e);
         }
 
         return customerInfoJson;
@@ -32,8 +34,7 @@ public class HashMapConverter implements AttributeConverter<Map<String, Object>,
         try {
             customerInfo = objectMapper.readValue(customerInfoJSON, Map.class);
         } catch (final IOException e) {
-            System.out.println("JSON writing error" + e);
-//            logger.error("JSON writing error", e);
+           HashMapConverter.LOGGER.error("JSON writing error", e);
         }
 
         return customerInfo;
