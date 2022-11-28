@@ -1,5 +1,6 @@
 package br.com.supersim.service.people.model;
 
+import br.com.supersim.service.people.common.AreaConverter;
 import br.com.supersim.service.people.common.HashMapConverter;
 import br.com.supersim.service.people.domain.Area;
 import br.com.supersim.service.people.domain.Phase;
@@ -23,7 +24,8 @@ public class Candidate {
 
     private String name;
 
-    private String area;
+    @Convert(converter = AreaConverter.class)
+    private Area area;
 
     private String position;
 
@@ -37,8 +39,7 @@ public class Candidate {
     public Candidate() {
     }
 
-    public Candidate(Long id, String name, String area, String position, String phase) {
-        this.id = id;
+    public Candidate(String name, Area area, String position, String phase) {
         this.name = name;
         this.area = area;
         this.position = position;
@@ -47,13 +48,6 @@ public class Candidate {
 
     public Long getId() {
         return id;
-    }
-
-    public Candidate(String name, String area, String position, String phase) {
-        this.name = name;
-        this.area = area;
-        this.position = position;
-        this.phase = phase;
     }
 
     public void setId(Long id) {
@@ -68,11 +62,12 @@ public class Candidate {
         this.name = name;
     }
 
-    public String getArea() {
+    @Column(columnDefinition = "JSONB")
+    public Area getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Area area) {
         this.area = area;
     }
 
