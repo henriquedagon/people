@@ -36,7 +36,7 @@ public class AreaConverter implements AttributeConverter<Area, String> {
 
         Area area = null;
         try {
-            area = objectMapper.readValue(areaJson, new TypeReference<Area>() {});
+            area = objectMapper.readValue(areaJson, new TypeReference<>() {});
         } catch (final IOException e) {
            AreaConverter.LOGGER.error("JSON writing error", e);
         }

@@ -90,4 +90,12 @@ public enum Area implements Serializable {
         return Area.getById(id);
     }
 
+    @Override
+    public String toString() {
+        return "Area{" +
+                "id=" + id +
+                ", value='" + value + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
