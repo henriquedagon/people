@@ -1,6 +1,7 @@
 package br.com.supersim.service.people;
 
 import br.com.supersim.service.people.domain.Area;
+import br.com.supersim.service.people.domain.Phase;
 import br.com.supersim.service.people.service.CandidateService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,7 +36,7 @@ class PeopleApplicationTests {
 
 	@Test
 	public void testSerialize(){
-		Candidate candidate = new Candidate("Tadeu", Area.DATA, "BA", "Application");
+		Candidate candidate = new Candidate("Tadeu", Area.DATA, "BA", Phase.APPLICATION);
 
 		Map<String, Object> attributes = new HashMap<>();
 		attributes.put("address", "123 Main Street");
@@ -67,7 +68,7 @@ class PeopleApplicationTests {
 
 	@Test
 	public void testSaveJson(){
-		Candidate candidate = new Candidate("Tadeu", Area.DATA, "BA", "Application");
+		Candidate candidate = new Candidate("Tadeu", Area.DATA, "BA", Phase.APPLICATION);
 		Map<String, Object> attributes = new HashMap<>();
 		attributes.put("address", "123 Main Street");
 		attributes.put("zipcode", 12345);
@@ -84,6 +85,11 @@ class PeopleApplicationTests {
 	public void testSerializeEnums() {
 		try{
 			PeopleApplicationTests.LOGGER.info(new ObjectMapper().writeValueAsString(Area.DATA));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		try{
+			PeopleApplicationTests.LOGGER.info(new ObjectMapper().writeValueAsString(Phase.APPLICATION));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

@@ -2,6 +2,7 @@ package br.com.supersim.service.people.model;
 
 import br.com.supersim.service.people.common.AreaConverter;
 import br.com.supersim.service.people.common.HashMapConverter;
+import br.com.supersim.service.people.common.PhaseConverter;
 import br.com.supersim.service.people.domain.Area;
 import br.com.supersim.service.people.domain.Phase;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,7 +30,8 @@ public class Candidate {
 
     private String position;
 
-    private String phase;
+    @Convert(converter = PhaseConverter.class)
+    private Phase phase;
 
     private String attributesJson;
 
@@ -39,7 +41,7 @@ public class Candidate {
     public Candidate() {
     }
 
-    public Candidate(String name, Area area, String position, String phase) {
+    public Candidate(String name, Area area, String position, Phase phase) {
         this.name = name;
         this.area = area;
         this.position = position;
@@ -79,11 +81,12 @@ public class Candidate {
         this.position = position;
     }
 
-    public String getPhase() {
+    @Column(columnDefinition = "JSONB")
+    public Phase getPhase() {
         return phase;
     }
 
-    public void setPhase(String phase) {
+    public void setPhase(Phase phase) {
         this.phase = phase;
     }
 
