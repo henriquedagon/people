@@ -1,46 +1,46 @@
 package br.com.supersim.service.people.common;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.AttributeConverter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HashMapConverter implements AttributeConverter<Map<String, Object>, String> {
 
-    private static final Logger LOGGER =  LoggerFactory.getLogger(HashMapConverter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HashMapConverter.class);
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public String convertToDatabaseColumn(Map<String, Object> customerInfo) {
+    public String convertToDatabaseColumn(Map<String, Object> attribute) {
 
-        String customerInfoJson = null;
+        String attributeJson = null;
         try {
-            customerInfoJson = objectMapper.writeValueAsString(customerInfo);
+            attributeJson = objectMapper.writeValueAsString(attribute);
         } catch (final JsonProcessingException e) {
-            HashMapConverter.LOGGER.error("JSON writing error", e);
+           HashMapConverter.LOGGER.error("JSON writing error", e);
         }
 
-        return customerInfoJson;
+        return attributeJson;
     }
 
     @Override
-    public Map<String, Object> convertToEntityAttribute(String customerInfoJSON) {
+    public Map<String, Object> convertToEntityAttribute(String attributeJson) {
 
-        Map<String, Object> customerInfo = null;
+        Map<String, Object> attribute = null;
         try {
-            customerInfo = objectMapper.readValue(customerInfoJSON, Map.class);
+            attribute = objectMapper.readValue(attributeJson, new TypeReference<HashMap<String, Object>>() {});
         } catch (final IOException e) {
-            HashMapConverter.LOGGER.error("JSON reading error", e);
+           HashMapConverter.LOGGER.error("JSON writing error", e);
         }
 
-        return customerInfo;
+        return attribute;
     }
 
 
