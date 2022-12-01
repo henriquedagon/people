@@ -33,10 +33,10 @@ public class Candidate {
     @Convert(converter = PhaseConverter.class)
     private Phase phase;
 
-    private String attributesJson;
+    private String additionalInformationJson;
 
     @Convert(converter = HashMapConverter.class)
-    private Map<String, Object> attributes;
+    private Map<String, Object> additionalInformation;
 
     public Candidate() {
     }
@@ -90,30 +90,30 @@ public class Candidate {
         this.phase = phase;
     }
 
-    public String getAttributesJson() {
-        return attributesJson;
+    public String getAdditionalInformationJson() {
+        return additionalInformationJson;
     }
 
-    public void setAttributesJson(String attributeJson) {
-        this.attributesJson = attributeJson;
+    public void setAdditionalInformationJson(String additionalInformationJson) {
+        this.additionalInformationJson = additionalInformationJson;
     }
 
-    public Map<String, Object> getAttributes() {
-        return attributes;
+    public Map<String, Object> getAdditionalInformation() {
+        return additionalInformation;
     }
 
-    public void setAttributes(Map<String, Object> attributes) {
-        this.attributes = attributes;
+    public void setAdditionalInformation(Map<String, Object> additionalInformation) {
+        this.additionalInformation = additionalInformation;
     }
 
-    public void serializeAttributes() throws JsonProcessingException {
+    public void serializeAdditionalInformation() throws JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
-        this.attributesJson = objectMapper.writeValueAsString(this.attributes);
+        this.additionalInformationJson = objectMapper.writeValueAsString(this.additionalInformation);
     }
 
-    public void deserializeAttributes() throws IOException {
+    public void deserializeAdditionalInformation() throws IOException {
         final ObjectMapper objectMapper = new ObjectMapper();
-        this.attributes = objectMapper.readValue(this.attributesJson, new TypeReference<>() {});
+        this.additionalInformation = objectMapper.readValue(this.additionalInformationJson, new TypeReference<>() {});
     }
 
     @Override
