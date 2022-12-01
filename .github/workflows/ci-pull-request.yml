@@ -1,7 +1,8 @@
-name: service-people
+name: workflow-service-people-pull-request
+on:
   pull_request:
     branches:
-      - master
+      - develop
 jobs:
   check-application:
     runs-on: ubuntu-latest
