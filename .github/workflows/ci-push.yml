@@ -1,4 +1,4 @@
-name: workflow-service-people-pull
+name: workflow-service-people-push
 on: [push]
 jobs:
   check-application:
