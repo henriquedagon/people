@@ -1,10 +1,16 @@
 package br.com.supersim.service.people.model;
 
+import br.com.supersim.service.people.common.AreaConverter;
 import br.com.supersim.service.people.common.HashMapConverter;
+import br.com.supersim.service.people.common.PhaseConverter;
 import br.com.supersim.service.people.domain.Area;
 import br.com.supersim.service.people.domain.Phase;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -17,24 +23,31 @@ public class Candidate {
 
     private String name;
 
+    @Convert(converter = AreaConverter.class)
     private Area area;
 
     private String position;
 
-    private String phase;
+    @Convert(converter = PhaseConverter.class)
+    private Phase phase;
+
+    private String additionalInformationJson;
+
+    @Convert(converter = HashMapConverter.class)
+    private Map<String, Object> additionalInformation;
 
     public Candidate() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Candidate(String name, Area area, String position, String phase) {
+    public Candidate(String name, Area area, String position, Phase phase) {
         this.name = name;
         this.area = area;
         this.position = position;
         this.phase = phase;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
@@ -50,7 +63,6 @@ public class Candidate {
     }
 
     @Column(columnDefinition = "JSONB")
-    @Convert(converter = HashMapConverter.class)
     public Area getArea() {
         return area;
     }
@@ -67,12 +79,39 @@ public class Candidate {
         this.position = position;
     }
 
-    public String getPhase() {
+    @Column(columnDefinition = "JSONB")
+    public Phase getPhase() {
         return phase;
     }
 
-    public void setPhase(String phase) {
+    public void setPhase(Phase phase) {
         this.phase = phase;
+    }
+
+    public String getAdditionalInformationJson() {
+        return additionalInformationJson;
+    }
+
+    public void setAdditionalInformationJson(String additionalInformationJson) {
+        this.additionalInformationJson = additionalInformationJson;
+    }
+
+    public Map<String, Object> getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    public void setAdditionalInformation(Map<String, Object> additionalInformation) {
+        this.additionalInformation = additionalInformation;
+    }
+
+    public void serializeAdditionalInformation() throws JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        this.additionalInformationJson = objectMapper.writeValueAsString(this.additionalInformation);
+    }
+
+    public void deserializeAdditionalInformation() throws IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        this.additionalInformation = objectMapper.readValue(this.additionalInformationJson, new TypeReference<>() {});
     }
 
     @Override

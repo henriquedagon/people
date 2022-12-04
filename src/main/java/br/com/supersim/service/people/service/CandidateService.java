@@ -1,7 +1,5 @@
 package br.com.supersim.service.people.service;
 
-//import br.com.supersim.service.people.domain.Area;
-//import br.com.supersim.service.people.domain.Phase;
 import br.com.supersim.service.people.model.Candidate;
 import br.com.supersim.service.people.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
