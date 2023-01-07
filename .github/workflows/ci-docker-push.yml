@@ -1,4 +1,4 @@
-name: workflow-service-people-push
+name: workflow-service-docker-people-push
 on: [push]
 jobs:
   check-application:
