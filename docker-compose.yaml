@@ -25,27 +25,6 @@ services:
       retries: 5
     restart: always
 
-#  artemis:
-#    image: coldis/infrastructure-messaging-service
-#    environment:
-#      - ARTEMIS_USERNAME=test
-#      - ARTEMIS_PASSWORD=test
-#      - ARTEMIS_PERF_JOURNAL=ALWAYS
-#      - ENVIRONMENT=development
-#    ports:
-#      - "8161:8161"
-#      - "61616:61616"
-#      - "61613:61613"
-#    container_name: artemis
-#    networks:
-#      - supersim
-#    healthcheck:
-#      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
-#      interval: 10s
-#      timeout: 10s
-#      retries: 5
-#    restart: always
-
 networks:
   supersim:
     driver: bridge
