@@ -80,6 +80,7 @@ class PeopleSerializationTests {
 
 		PeopleSerializationTests.LOGGER.info(createdCandidate.toString());
 		Assertions.assertEquals(Area.DATA, createdCandidate.getArea());
+		Assertions.assertEquals(Phase.APPLICATION, createdCandidate.getPhase());
 	}
 
 
