@@ -34,9 +34,8 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     @Query(
             nativeQuery = true,
             value = ("SELECT * FROM Candidate candidate " +
-                    "WHERE phase = :phaseValue " +
-//                    "and area ->> 'value' = :areaValue"
-                    "and area = :areaValue"
+                    "WHERE phase ->> 'value' = :phaseValue " +
+                    "AND area ->> 'value' = :areaValue"
             )
     )
     List<Candidate> findAllWithFilters(

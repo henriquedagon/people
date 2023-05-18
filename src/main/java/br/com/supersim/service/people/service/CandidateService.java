@@ -40,7 +40,7 @@ public class CandidateService {
 
     @RequestMapping(
             method = {RequestMethod.GET},
-            path = {"all/search"}
+            path = {"search"}
     )
     public List<Candidate> findAllWithFilters(
             @RequestParam String phaseValue,

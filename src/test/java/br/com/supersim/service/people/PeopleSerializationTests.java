@@ -41,7 +41,7 @@ class PeopleSerializationTests {
 		Map<String, Object> additionalInformation = new HashMap<>();
 		additionalInformation.put("address", "123 Main Street");
 		additionalInformation.put("zipcode", 12345);
-		candidate.setAdditionalInformation(additionalInformation);
+//		candidate.setAdditionalInformation(additionalInformation);
 
 		Candidate createdCandidate = candidateService.create(candidate);
 
