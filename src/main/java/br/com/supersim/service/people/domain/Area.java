@@ -3,10 +3,7 @@ package br.com.supersim.service.people.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.annotations.ApiModel;
-
-//import org.coldis.library.helper.EnumHelper;
 
 import java.io.Serializable;
 import java.util.Arrays;
