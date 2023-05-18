@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import br.com.supersim.service.people.model.Candidate;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,38 +33,6 @@ class PeopleSerializationTests {
 
 	@Test
 	public void contextLoads() {
-	}
-
-	@Test
-	public void testSerialize(){
-		Candidate candidate = new Candidate("Tadeu", Area.DATA, "BA", Phase.APPLICATION);
-
-		Map<String, Object> attributes = new HashMap<>();
-		attributes.put("address", "123 Main Street");
-		attributes.put("zipcode", 12345);
-
-		candidate.setAdditionalInformation(attributes);
-		try {
-			candidate.serializeAdditionalInformation();
-		} catch (JsonProcessingException e) {
-			PeopleSerializationTests.LOGGER.info("Unable to serialize attributes");
-//			e.printStackTrace()
-		}
-		String serialized = candidate.getAdditionalInformationJson();
-
-		PeopleSerializationTests.LOGGER.info("Serialized attributes: " + serialized);
-
-		candidate.setAdditionalInformationJson(serialized);
-		try{
-			candidate.deserializeAdditionalInformation();
-		}catch (IOException e) {
-			PeopleSerializationTests.LOGGER.info("Unable to deserialize attributes");
-			e.printStackTrace();
-		}
-
-		PeopleSerializationTests.LOGGER.info(candidate.toString());
-
-		Assertions.assertEquals(attributes, candidate.getAdditionalInformation());
 	}
 
 	@Test

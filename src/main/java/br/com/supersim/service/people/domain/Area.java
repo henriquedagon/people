@@ -70,6 +70,7 @@ public enum Area implements Serializable {
         }
         return null;
     }
+
     /**
      * Gets the value of the enum from a given JSON.
      *
@@ -81,12 +82,7 @@ public enum Area implements Serializable {
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public static Area fromJson(
             @JsonProperty(value = "id")
-            final Long id
-//            @JsonProperty(value = "name")
-//            final String name,
-//            @JsonProperty(value = "value")
-//            final String value
-    ) {
+            final Long id) {
         return Area.getById(id);
     }
 
