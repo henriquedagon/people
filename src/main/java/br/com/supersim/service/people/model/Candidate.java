@@ -31,8 +31,6 @@ public class Candidate {
     @Convert(converter = PhaseConverter.class)
     private Phase phase;
 
-    private String additionalInformationJson;
-
     @Convert(converter = HashMapConverter.class)
     private Map<String, Object> additionalInformation;
 
@@ -88,30 +86,12 @@ public class Candidate {
         this.phase = phase;
     }
 
-    public String getAdditionalInformationJson() {
-        return additionalInformationJson;
-    }
-
-    public void setAdditionalInformationJson(String additionalInformationJson) {
-        this.additionalInformationJson = additionalInformationJson;
-    }
-
     public Map<String, Object> getAdditionalInformation() {
         return additionalInformation;
     }
 
     public void setAdditionalInformation(Map<String, Object> additionalInformation) {
         this.additionalInformation = additionalInformation;
-    }
-
-    public void serializeAdditionalInformation() throws JsonProcessingException {
-        final ObjectMapper objectMapper = new ObjectMapper();
-        this.additionalInformationJson = objectMapper.writeValueAsString(this.additionalInformation);
-    }
-
-    public void deserializeAdditionalInformation() throws IOException {
-        final ObjectMapper objectMapper = new ObjectMapper();
-        this.additionalInformation = objectMapper.readValue(this.additionalInformationJson, new TypeReference<>() {});
     }
 
     @Override

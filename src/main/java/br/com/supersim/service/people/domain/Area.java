@@ -3,10 +3,7 @@ package br.com.supersim.service.people.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.annotations.ApiModel;
-
-//import org.coldis.library.helper.EnumHelper;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -70,6 +67,7 @@ public enum Area implements Serializable {
         }
         return null;
     }
+
     /**
      * Gets the value of the enum from a given JSON.
      *
@@ -81,12 +79,7 @@ public enum Area implements Serializable {
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public static Area fromJson(
             @JsonProperty(value = "id")
-            final Long id
-//            @JsonProperty(value = "name")
-//            final String name,
-//            @JsonProperty(value = "value")
-//            final String value
-    ) {
+            final Long id) {
         return Area.getById(id);
     }
 
