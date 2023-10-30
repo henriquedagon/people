@@ -52,7 +52,7 @@ public enum Area implements Serializable {
     public static Map<String, Object> toJson(Area area) {
         return Map.of("id", area.getId(),
                 "value", area.getValue(),
-                "name",area.getName());
+                "name", area.getName());
     }
 
     public static List<Map<String, Object>> getAllAsJson() {
@@ -62,8 +62,9 @@ public enum Area implements Serializable {
     }
 
     public static Area getById(Long id) {
-        for(Area a : values()) {
-            if(a.id.equals(id)) return a;
+        for (Area a : values()) {
+            if (a.id.equals(id))
+                return a;
         }
         return null;
     }
@@ -71,15 +72,14 @@ public enum Area implements Serializable {
     /**
      * Gets the value of the enum from a given JSON.
      *
-     * @param  id              Identifier.
-//     * @param  name            Name.
-//     * @param  value           Value.
-     * @return                 The value of the enum from a given JSON.
+     * @param id Identifier.
+     *           // * @param name Name.
+     *           // * @param value Value.
+     * @return The value of the enum from a given JSON.
      */
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public static Area fromJson(
-            @JsonProperty(value = "id")
-            final Long id) {
+            @JsonProperty(value = "id") final Long id) {
         return Area.getById(id);
     }
 

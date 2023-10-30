@@ -1,19 +1,9 @@
 package br.com.supersim.service.people.model;
 
 import br.com.supersim.service.people.common.AreaConverter;
-import br.com.supersim.service.people.common.HashMapConverter;
 import br.com.supersim.service.people.common.PhaseConverter;
-import br.com.supersim.service.people.common.Views;
 import br.com.supersim.service.people.domain.Area;
 import br.com.supersim.service.people.domain.Phase;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hibernate.annotations.Type;
-
-import java.io.IOException;
-import java.util.Map;
 
 import javax.persistence.*;
 
@@ -26,20 +16,15 @@ public class Candidate {
 
     private String name;
 
-    @JsonView(Views.Public.class)
+    @Column(columnDefinition = "JSONB")
     @Convert(converter = AreaConverter.class)
     private Area area;
 
-    private String position;
-
-    @JsonView(Views.Public.class)
+    @Column(columnDefinition = "JSONB")
     @Convert(converter = PhaseConverter.class)
     private Phase phase;
 
-//    @Type(type = "JSONB")
-//    @Column(columnDefinition = "JSONB")
-//    @Convert(converter = HashMapConverter.class)
-//    private Map<String, Object> additionalInformation;
+    private String position;
 
     public Candidate() {
     }
@@ -67,7 +52,6 @@ public class Candidate {
         this.name = name;
     }
 
-    @Column(columnDefinition = "JSONB")
     public Area getArea() {
         return area;
     }
@@ -84,7 +68,6 @@ public class Candidate {
         this.position = position;
     }
 
-    @Column(columnDefinition = "JSONB")
     public Phase getPhase() {
         return phase;
     }
@@ -93,13 +76,35 @@ public class Candidate {
         this.phase = phase;
     }
 
-//    public Map<String, Object> getAdditionalInformation() {
-//        return additionalInformation;
-//    }
-//
-//    public void setAdditionalInformation(Map<String, Object> additionalInformation) {
-//        this.additionalInformation = additionalInformation;
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Candidate candidate = (Candidate) o;
+
+        if (!id.equals(candidate.id))
+            return false;
+        if (!name.equals(candidate.name))
+            return false;
+        if (area != candidate.area)
+            return false;
+        if (!position.equals(candidate.position))
+            return false;
+        return phase == candidate.phase;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + area.hashCode();
+        result = 31 * result + position.hashCode();
+        result = 31 * result + phase.hashCode();
+        return result;
+    }
 
     @Override
     public String toString() {

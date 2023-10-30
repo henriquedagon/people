@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 @ApiModel
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum Phase {
+public enum Phase implements Serializable {
 
     APPLICATION(0L, "application", "Application"),
 

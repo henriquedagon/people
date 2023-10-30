@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.persistence.AttributeConverter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import br.com.supersim.service.people.domain.Area;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,7 +25,7 @@ public class AreaConverter implements AttributeConverter<Area, String> {
         try {
             areaJson = this.objectMapper.writeValueAsString(area);
         } catch (final JsonProcessingException e) {
-           AreaConverter.LOGGER.error("JSON writing error", e);
+            AreaConverter.LOGGER.error("JSON writing error", e);
         }
 
         return areaJson;
@@ -38,13 +36,13 @@ public class AreaConverter implements AttributeConverter<Area, String> {
 
         Area area = null;
         try {
-            area = this.objectMapper.readValue(areaJson, new TypeReference<>() {});
+            area = this.objectMapper.readValue(areaJson, new TypeReference<>() {
+            });
         } catch (final IOException e) {
-           AreaConverter.LOGGER.error("JSON writing error", e);
+            AreaConverter.LOGGER.error("JSON writing error", e);
         }
 
         return area;
     }
-
 
 }
