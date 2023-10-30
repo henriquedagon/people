@@ -36,12 +36,11 @@ class PeopleSerializationTests {
 	}
 
 	@Test
-	public void testSaveJson(){
+	public void testSaveJson() {
 		Candidate candidate = new Candidate("Tadeu", Area.DATA, "BA", Phase.APPLICATION);
 		Map<String, Object> additionalInformation = new HashMap<>();
 		additionalInformation.put("address", "123 Main Street");
 		additionalInformation.put("zipcode", 12345);
-//		candidate.setAdditionalInformation(additionalInformation);
 
 		Candidate createdCandidate = candidateService.create(candidate);
 
@@ -50,17 +49,16 @@ class PeopleSerializationTests {
 		Assertions.assertEquals(Phase.APPLICATION, createdCandidate.getPhase());
 	}
 
-
 	@Test
 	public void testSerializeEnums() {
 		String data = null;
 		String phase = null;
-		try{
+		try {
 			data = mapper.writeValueAsString(Area.DATA);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		try{
+		try {
 			phase = mapper.writeValueAsString(Phase.APPLICATION);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
