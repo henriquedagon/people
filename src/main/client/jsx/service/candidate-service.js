@@ -14,10 +14,7 @@ const CandidateService = {
     },
 
     getCandidateById : async (id) => {
-        const url = `http://localhost:8080/api/candidate/${id}`
-        const response = await fetch(url)
-        const data = await response.json()
-        return data
+        return api.get(`http://localhost:8080/api/candidate/${id}`)
     }
 
 }
