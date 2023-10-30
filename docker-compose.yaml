@@ -1,0 +1,33 @@
+version: '3'
+services:
+
+  db:
+    image: postgres   # coldis/infrastructure-transactional-repository
+    environment:
+      - DATABASE_NAME=test
+      - ENABLE_JSON_CAST=true
+      - ENABLE_UNACCENT=true
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_USER=test
+      - REPLICATOR_USER_NAME=replicator
+      - REPLICATOR_USER_PASSWORD=test
+      - USER_NAME=test
+      - USER_PASSWORD=test
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - supersim
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    restart: always
+
+networks:
+  supersim:
+    driver: bridge
+
+
+

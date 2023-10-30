@@ -1,9 +1,9 @@
 package br.com.supersim.service.people.model;
 
+import br.com.supersim.service.people.common.AreaConverter;
+import br.com.supersim.service.people.common.PhaseConverter;
 import br.com.supersim.service.people.domain.Area;
 import br.com.supersim.service.people.domain.Phase;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
@@ -16,24 +16,28 @@ public class Candidate {
 
     private String name;
 
-    private String area;
+    @Column(columnDefinition = "JSONB")
+    @Convert(converter = AreaConverter.class)
+    private Area area;
+
+    @Column(columnDefinition = "JSONB")
+    @Convert(converter = PhaseConverter.class)
+    private Phase phase;
 
     private String position;
-
-    private String phase;
 
     public Candidate() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Candidate(String name, String area, String position, String phase) {
+    public Candidate(String name, Area area, String position, Phase phase) {
         this.name = name;
         this.area = area;
         this.position = position;
         this.phase = phase;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
@@ -48,11 +52,11 @@ public class Candidate {
         this.name = name;
     }
 
-    public String getArea() {
+    public Area getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Area area) {
         this.area = area;
     }
 
@@ -64,12 +68,42 @@ public class Candidate {
         this.position = position;
     }
 
-    public String getPhase() {
+    public Phase getPhase() {
         return phase;
     }
 
-    public void setPhase(String phase) {
+    public void setPhase(Phase phase) {
         this.phase = phase;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Candidate candidate = (Candidate) o;
+
+        if (!id.equals(candidate.id))
+            return false;
+        if (!name.equals(candidate.name))
+            return false;
+        if (area != candidate.area)
+            return false;
+        if (!position.equals(candidate.position))
+            return false;
+        return phase == candidate.phase;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + area.hashCode();
+        result = 31 * result + position.hashCode();
+        result = 31 * result + phase.hashCode();
+        return result;
     }
 
     @Override

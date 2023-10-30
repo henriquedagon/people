@@ -1,7 +1,5 @@
 package br.com.supersim.service.people.service;
 
-//import br.com.supersim.service.people.domain.Area;
-//import br.com.supersim.service.people.domain.Phase;
 import br.com.supersim.service.people.model.Candidate;
 import br.com.supersim.service.people.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +19,29 @@ public class CandidateService {
     private CandidateRepository candidateRepository;
 
     @ResponseBody
-    @RequestMapping(method = {RequestMethod.GET}, path = {"all"})
+    @RequestMapping(
+            method = {RequestMethod.GET},
+            path = {"all"}
+    )
     public List<Candidate> findAll() {
         return this.candidateRepository.findAll();
     }
 
-    @RequestMapping(method = {RequestMethod.GET}, path = {"{id}"})
+
+    @RequestMapping(
+            method = {RequestMethod.GET},
+            path = {"{id}"}
+    )
     public Candidate findById(
             @PathVariable(value = "id")
             Long id) {
         return this.candidateRepository.findById(id).orElse(null);
     }
 
-    @RequestMapping(method = {RequestMethod.GET}, path = {"all/search"})
+    @RequestMapping(
+            method = {RequestMethod.GET},
+            path = {"search"}
+    )
     public List<Candidate> findAllWithFilters(
             @RequestParam String phaseValue,
             @RequestParam String areaValue) {
@@ -49,7 +57,10 @@ public class CandidateService {
     }
 
     @ResponseBody
-    @RequestMapping(method = {RequestMethod.PUT}, path = {"{id}"})
+    @RequestMapping(
+            method = {RequestMethod.PUT},
+            path = {"{id}"}
+    )
     public Candidate update(
             @PathVariable(value = "id")
             Long id,
@@ -65,7 +76,10 @@ public class CandidateService {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(method = {RequestMethod.DELETE}, path = {"{id}"})
+    @RequestMapping(
+            method = {RequestMethod.DELETE},
+            path = {"{id}"}
+    )
     public void delete(
             @PathVariable(value = "id")
             Long id) {
