@@ -50,12 +50,14 @@ const Candidates = props => {
 
     return (
         <section className={classes.candidates}>
-            {showAddCandidateModal && <AddCandidateModal onClose={toggleAddCandidateModalHandler}/>}
-            {showEditCandidateModal && <EditCandidateModal 
-                                            onClose={toggleEditCandidateModalHandler}
-                                            candidate={candidateToEdit}
-                                        />
-                }
+            {showAddCandidateModal && 
+                <AddCandidateModal onClose={toggleAddCandidateModalHandler}/>
+            }
+            {showEditCandidateModal && 
+                <EditCandidateModal 
+                    onClose={toggleEditCandidateModalHandler}
+                    candidate={candidateToEdit}/>
+            }
             <div className={classes['add-button']}>
                 <Button label="Add" onClick={toggleAddCandidateModalHandler}/>
             </div>

@@ -13,7 +13,7 @@ const CandidateService = {
 
     getCandidates : async (selectedFilters) => {
         const {phase, area} = selectedFilters
-        const url = `http://localhost:8080/api/candidate/all/search?phaseValue=${phase}&areaValue=${area}`
+        const url = `http://localhost:8080/api/candidate/search?phaseValue=${phase}&areaValue=${area}`
         const response = await fetch(url)
         const data = await response.json()
         return data

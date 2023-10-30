@@ -21,9 +21,9 @@ const CandidateItem = props => {
                     {props.name}
                 </Link>
             </td>
-            <td>{props.phase}</td>
+            <td>{props.phase.name}</td>
             <td>{props.position}</td>
-            <td>{props.area}</td>
+            <td>{props.area.name}</td>
             <td><Button onClick={editCandidateHanlder} label="Edit"/></td>
         </tr>
     )
