@@ -29,8 +29,8 @@ const Candidate = () => {
             <tbody>
                 <tr><td>name</td><td>{candidateData.name}</td></tr>
                 <tr><td>position</td><td>{candidateData.position}</td></tr>
-                <tr><td>phase</td><td>{candidateData.phase}</td></tr>
-                <tr><td>area</td><td>{candidateData.area}</td></tr>
+                <tr><td>phase</td><td>{candidateData.phase?.name}</td></tr>
+                <tr><td>area</td><td>{candidateData.area?.name}</td></tr>
             </tbody>
         </table>
 
