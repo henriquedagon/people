@@ -10,11 +10,13 @@ const CandidateService = {
 
     getCandidates : async (selectedFilters) => {
         const {phase, area} = selectedFilters
-        return api.get(`http://localhost:8080/api/candidate/search?phaseValue=${phase}&areaValue=${area}`)
+        return await api.get(`/candidate/search?phaseValue=${phase}&areaValue=${area}`)
+            .then(response => {return response.data})
     },
 
     getCandidateById : async (id) => {
-        return api.get(`http://localhost:8080/api/candidate/${id}`)
+        return await api.get(`/candidate/${id}`)
+            .then(response => {return response.data})
     }
 
 }
