@@ -3,9 +3,9 @@ import api from "./api"
 
 const CandidateService = {
 
-    addCandidate: async (candidateData) => {
-        // return axios.post('http://localhost:8080/api/candidate', candidateData)
-        return api.post('/candidate', candidateData)
+    addCandidate: async (name, position, area) => {
+        return await api.post(`/candidate?name=${name}&position=${position}&area=${area}`)
+            .then(response => {return response})
     },
 
     getCandidates : async (selectedFilters) => {

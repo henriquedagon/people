@@ -1,5 +1,6 @@
 package br.com.supersim.service.people.service;
 
+import br.com.supersim.service.people.domain.Area;
 import br.com.supersim.service.people.model.Candidate;
 import br.com.supersim.service.people.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,7 @@ public class CandidateService {
         return this.candidateRepository.findById(id).orElse(null);
     }
 
+
     @RequestMapping(
             method = {RequestMethod.GET},
             path = {"search"}
@@ -48,13 +50,23 @@ public class CandidateService {
         return this.candidateRepository.findAllWithFilters(phaseValue, areaValue);
     }
 
+
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(method = {RequestMethod.POST})
-    public Candidate create(
-            @RequestBody Candidate candidate) {
-        return this.candidateRepository.save(candidate);
+    @RequestMapping(method = { RequestMethod.POST })
+    public Candidate addCandidate(
+        @RequestParam String name,
+        @RequestParam String position,
+        @RequestParam Area area) {
+            return this.create(name, position, area);
     }
+
+
+    private Candidate create(String name, String position, Area area) {
+           final Candidate newCandidate = new Candidate(name, area, position);
+           return this.candidateRepository.save(newCandidate);
+    }
+
 
     @ResponseBody
     @RequestMapping(
@@ -75,6 +87,7 @@ public class CandidateService {
         return null;
     }
 
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(
             method = {RequestMethod.DELETE},
@@ -85,6 +98,13 @@ public class CandidateService {
             Long id) {
         this.candidateRepository.findById(id)
                 .ifPresent(candidate -> this.candidateRepository.delete(candidate));   //Removes if null statement
+    }
+
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(method = { RequestMethod.DELETE })
+    public void deleteAll() {
+            this.candidateRepository.deleteAll();
     }
 
 }

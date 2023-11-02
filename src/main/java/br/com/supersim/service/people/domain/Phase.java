@@ -70,8 +70,6 @@ public enum Phase implements Serializable {
      * Gets the value of the enum from a given JSON.
      *
      * @param  id              Identifier.
-    //     * @param  name            Name.
-    //     * @param  value           Value.
      * @return                 The value of the enum from a given JSON.
      */
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
