@@ -6,6 +6,8 @@ import br.com.supersim.service.people.domain.Area;
 import br.com.supersim.service.people.domain.Phase;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Candidate {
@@ -14,26 +16,29 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Min(value = 3)
     private String name;
 
+    @NotNull
     @Column(columnDefinition = "JSONB")
     @Convert(converter = AreaConverter.class)
     private Area area;
 
+    @NotNull
     @Column(columnDefinition = "JSONB")
     @Convert(converter = PhaseConverter.class)
-    private Phase phase;
+    private Phase phase = Phase.APPLICATION;
 
+    @NotNull
     private String position;
 
     public Candidate() {
     }
 
-    public Candidate(String name, Area area, String position, Phase phase) {
+    public Candidate(String name, Area area, String position) {
         this.name = name;
-        this.area = area;
         this.position = position;
-        this.phase = phase;
+        this.area = area;
     }
 
     public Long getId() {

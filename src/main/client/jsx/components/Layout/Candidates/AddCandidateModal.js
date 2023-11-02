@@ -8,12 +8,6 @@ import CandidateService from "../../../service/candidate-service"
 
 import classes from "./AddCandidateModal.module.css"
 
-const phases = [
-    { id: 1, value: "application", name: "Application" },
-    { id: 2, value: "approved", name: "Approved" },
-    { id: 3, value: "declined", name: "Declined" }
-]
-
 const areas = [
     { id: 1, value: "data", name: "Data" },
     { id: 2, value: "tech", name: "Tech" },
@@ -33,20 +27,17 @@ const AddCandidateModal = (props) => {
         }
     }
 
-    const addCandidateHandler = (candidateData) => {
-        CandidateService.addCandidate(candidateData)
+    const addCandidateHandler = (name, position, area) => {
+        CandidateService.addCandidate(name, position, area.toUpperCase())
     }
 
     const submitHandler = (event) => {
         event.preventDefault()
-        const data = {
-            name: nameRef.current.value,
-            phase: phaseRef.current.value,
-            position: positionRef.current.value,
-            area: areaRef.current.value,
-        }
-        addCandidateHandler(data)
-        cleanRef([nameRef, phaseRef, positionRef, areaRef])
+        const name = nameRef.current.value
+        const position = positionRef.current.value
+        const area = areaRef.current.value
+        addCandidateHandler(name, position, area)
+        cleanRef([nameRef, positionRef, areaRef])
         props.onClose()
     }
 
@@ -55,11 +46,6 @@ const AddCandidateModal = (props) => {
             <form className={classes["add-candidate-modal"]} onSubmit={submitHandler}>
                 <Input ref={nameRef} label="Name"/>
                 <Input ref={positionRef} label="Position"/>
-                <Select 
-                    label="Phase" 
-                    ref={phaseRef} 
-                    options={phases}
-                />
                 <Select 
                     label="Area" 
                     ref={areaRef} 

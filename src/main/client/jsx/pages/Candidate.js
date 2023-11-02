@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./Candidate.module.css"
+import CandidateService from "../service/candidate-service";
 
 const Candidate = () => {
     const params = useParams()
@@ -14,9 +15,7 @@ const Candidate = () => {
 
     async function fetchCandidateById (id) {
         setIsLoading(true)
-        const url = `http://localhost:8080/api/candidate/${id}`
-        const response = await fetch(url)
-        const data = await response.json()
+        const data = await CandidateService.getCandidateById(id)
         setCandidateData(data)
         setIsLoading(false)
     }
