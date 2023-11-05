@@ -17,6 +17,7 @@
         border: 1px #aaa solid;
         box-shadow: 1px 1px #ddd inset;
         background-color: #f8f8f8;
+        padding: 0 5px;
         }
 
     select:focus {
