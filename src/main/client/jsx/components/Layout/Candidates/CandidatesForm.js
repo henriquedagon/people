@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import Select from "../../UI/Select";
+import Button from "../../UI/Button";
 
 import classes from "./CandidatesForm.module.css"
 
@@ -39,7 +40,7 @@ const CandidatesForm = props => {
                 ref={areaSelectRef} 
                 options={areas} 
             />
-            <button onClick={submitHandler}>Search</button>
+            <Button label="Search" onClick={submitHandler}/>
         </div>
     )
 }
