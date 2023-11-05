@@ -18,7 +18,8 @@
         box-shadow: 1px 1px #ddd inset;
         background-color: #f8f8f8;
         padding: 0 5px;
-        }
+        appearance:none;
+    }
 
     select:focus {
         outline-width: 0;
