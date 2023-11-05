@@ -1,11 +1,2 @@
-.candidate-table {
-    border: 1px black solid;
-    margin: auto;
-    border-radius: 8px;
-}
-
-.candidate-table td {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 4px;
-    border-radius: 8px;
-}
+/* .header {
+} */

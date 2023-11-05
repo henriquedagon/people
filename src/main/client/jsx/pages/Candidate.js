@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./Candidate.module.css"
 import CandidateService from "../service/candidate-service";
+import DataRow from "../components/UI/DataRow";
+import DataContainer from "../components/UI/DataContainer";
 
 const Candidate = () => {
     const params = useParams()
@@ -13,6 +15,7 @@ const Candidate = () => {
         fetchCandidateById(params.candidateId)
     }, [params.candidateId])
 
+
     async function fetchCandidateById (id) {
         setIsLoading(true)
         const data = await CandidateService.getCandidateById(id)
@@ -20,24 +23,33 @@ const Candidate = () => {
         setIsLoading(false)
     }
 
-    const table = 
-        <table className={classes['candidate-table']}>
-            <thead>
-                <tr><th colSpan="2">Candidate #{candidateData.id}</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>name</td><td>{candidateData?.name}</td></tr>
-                <tr><td>position</td><td>{candidateData?.position}</td></tr>
-                <tr><td>phase</td><td>{candidateData?.phase?.name}</td></tr>
-                <tr><td>area</td><td>{candidateData?.area?.name}</td></tr>
-            </tbody>
-        </table>
+
+    const basicDataTable = 
+        <DataContainer>
+            <DataRow
+                field='name'
+                value={candidateData?.name}
+            />                
+            <DataRow
+                field='position'
+                value={candidateData?.position}
+            />                
+            <DataRow
+                field='phase'
+                value={candidateData?.phase?.name}
+            />                
+            <DataRow
+                field='area'
+                value={candidateData?.area?.name}
+            />                
+        </DataContainer>
 
 
     return (
         <React.Fragment>
+            <div className={classes.header}>Candidate #{candidateData?.id}</div>
             {isLoading && <p>Loading...</p>}
-            {!isLoading && table}
+            {!isLoading && basicDataTable}
         </React.Fragment>
     )
 }
