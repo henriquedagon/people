@@ -17,7 +17,6 @@ const areas = [
 
 const AddCandidateModal = (props) => {
     const nameRef = useRef()
-    const phaseRef = useRef()
     const positionRef = useRef()
     const areaRef = useRef()
 
