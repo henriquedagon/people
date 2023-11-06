@@ -14,9 +14,23 @@ import java.util.Map;
 public class AreaService {
 
     @ResponseBody
-    @RequestMapping(method = {RequestMethod.GET}, path = {"all"})
-    public List<Map<String, Object>> findAll() {
-        return Area.getAllAsJson();
+    @RequestMapping(
+            method = {RequestMethod.GET},
+            path = {"/"}
+    )
+    public List<Area> findAll() {
+        return Area.getAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(
+            method = {RequestMethod.GET},
+            path = {"{id}"}
+    )
+    public Area findArea(
+            @PathVariable
+            Long id) {
+        return Area.getById(id);
     }
 
 }

@@ -55,6 +55,10 @@ public enum Area implements Serializable {
                 "name", area.getName());
     }
 
+    public static List<Area> getAll() {
+        return Arrays.stream(Area.values()).collect(Collectors.toList());
+    }
+
     public static List<Map<String, Object>> getAllAsJson() {
         return Arrays.stream(Area.values())
                 .map(Area::toJson)
@@ -73,13 +77,12 @@ public enum Area implements Serializable {
      * Gets the value of the enum from a given JSON.
      *
      * @param id Identifier.
-     *           // * @param name Name.
-     *           // * @param value Value.
      * @return The value of the enum from a given JSON.
      */
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public static Area fromJson(
-            @JsonProperty(value = "id") final Long id) {
+            @JsonProperty(value = "id")
+            final Long id) {
         return Area.getById(id);
     }
 

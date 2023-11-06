@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Phase implements Serializable {
 
-    APPLICATION(0L, "application", "Application"),
+    DECLINED(0L, "declined", "Declined"),
 
-    DECLINED(10L, "declined", "Declined"),
+    APPLICATION(10L, "application", "Application"),
 
-    APPROVED(20L, "approved", "Approved")
+    APPROVED(20L, "approved", "Approved"),
 
     ;
 
@@ -51,6 +51,10 @@ public enum Phase implements Serializable {
         return Map.of("id", phase.getId(),
                 "value", phase.getValue(),
                 "name",phase.getName());
+    }
+
+    public static List<Phase> getAll() {
+        return Arrays.stream(Phase.values()).collect(Collectors.toList());
     }
 
     public static List<Map<String, Object>> getAllAsJson() {
