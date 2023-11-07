@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Modal from "../../UI/Modal";
 import Input from "../../UI/Input";
 import Button from "../../UI/Button";
@@ -9,24 +9,20 @@ import AreaService from "../../../service/area-service";
 
 import classes from "./AddCandidateModal.module.css"
 
-// const areas = [
-//     { id: 1, value: "data", name: "Data" },
-//     { id: 2, value: "tech", name: "Tech" },
-//     { id: 3, value: "risk", name: "Risk" },
-//     { id: 4, value: "legal", name: "Legal" }
-// ]
 
 const AddCandidateModal = (props) => {
     const nameRef = useRef()
     const positionRef = useRef()
     const areaRef = useRef()
-    const areas = null
+    const [areas, setAreas] = useState([])
 
 
     useEffect(() => {
-        console.log('loading...')
-        areas = AreaService.getAllAreas()
-        console.log(areas)
+        const loadData = async () => {
+            const retrievedAreas = await AreaService.getAllAreas()
+            setAreas(retrievedAreas)
+        }
+        loadData().catch(console.error);
     }, [])
 
 
