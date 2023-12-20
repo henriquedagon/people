@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import classes from "./Candidate.module.css"
 import CandidateService from "../service/candidate-service";
 import DataRow from "../components/UI/DataRow";
-import DataContainer from "../components/UI/DataContainer";
+import DataContainer from "../components/UI/Container/DataContainer";
+import PanelContainer from "../components/UI/Container/PanelContainer";
 
 const Candidate = () => {
     const params = useParams()
@@ -44,12 +45,48 @@ const Candidate = () => {
             />                
         </DataContainer>
 
+    // Score and action panel
+    const scoreDataTable = 
+        <DataContainer>
+            <DataRow
+                field='RH Phase'
+                value='★★★'
+            />
+            <DataRow
+                field='Technical Phase'
+                value='★★★★'
+            />
+            <DataRow
+                field='Director Phase'
+                value='★★★★★'
+            />
+        </DataContainer>
+
+    const actionTable = 
+        <DataContainer>
+            <DataRow
+                field='Advance'
+                value='=>'
+            />
+            <DataRow
+                field='Approve'
+                value='✓'
+            />
+            <DataRow
+                field='Decline'
+                value='X'
+            />
+        </DataContainer>
 
     return (
         <React.Fragment>
             <div className={classes.header}>Candidate #{candidateData?.id}</div>
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && basicDataTable}
+            <PanelContainer>
+                {isLoading && <p>Loading...</p>}
+                {!isLoading && basicDataTable}
+                {!isLoading && scoreDataTable}
+                {!isLoading && actionTable}
+            </PanelContainer>
         </React.Fragment>
     )
 }

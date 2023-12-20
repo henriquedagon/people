@@ -1,5 +1,6 @@
 .container {
     border: 1px black solid;
     border-radius: 5px;
-    max-width: 200px;
+    max-width: 300px;
+    min-width: 250px;
 }
