@@ -9,7 +9,7 @@ const CandidatesTable = props => {
                 <tr>
                     <th>{props.descriptions.id}</th>
                     <th>{props.descriptions.name}</th>
-                    <th>{props.descriptions.phase}</th>
+                    <th>{props.descriptions.state}</th>
                     <th>{props.descriptions.position}</th>
                     <th>{props.descriptions.area}</th>
                 </tr>

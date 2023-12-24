@@ -45,9 +45,9 @@ public class CandidateService {
             path = {"search"}
     )
     public List<Candidate> findAllWithFilters(
-            @RequestParam String phaseValue,
+            @RequestParam String stateValue,
             @RequestParam String areaValue) {
-        return this.candidateRepository.findAllWithFilters(phaseValue, areaValue);
+        return this.candidateRepository.findAllWithFilters(stateValue, areaValue);
     }
 
 

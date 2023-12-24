@@ -1,7 +1,6 @@
 package br.com.supersim.service.people.service;
 
-import br.com.supersim.service.people.domain.Area;
-import br.com.supersim.service.people.domain.Phase;
+import br.com.supersim.service.people.domain.State;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,21 +10,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RestController
-@RequestMapping("/phase")
+@RequestMapping("/state")
 @CrossOrigin(origins = "http://localhost:3000")
-public class PhaseService {
+public class StateService {
 
     @ResponseBody
     @RequestMapping(
             method = {RequestMethod.GET},
             path = {"/"}
     )
-    public List<Phase> findAll() {
-        return Phase.getAll();
+    public List<State> findAll() {
+        return State.getAll();
     }
 
     @ResponseBody
@@ -33,10 +31,10 @@ public class PhaseService {
             method = {RequestMethod.GET},
             path = {"{id}"}
     )
-    public Phase find(
+    public State find(
             @PathVariable
                     Long id) {
-        return Phase.getById(id);
+        return State.getById(id);
     }
 
 }

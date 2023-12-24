@@ -1,9 +1,9 @@
 package br.com.supersim.service.people.model;
 
 import br.com.supersim.service.people.common.AreaConverter;
-import br.com.supersim.service.people.common.PhaseConverter;
+import br.com.supersim.service.people.common.StateConverter;
 import br.com.supersim.service.people.domain.Area;
-import br.com.supersim.service.people.domain.Phase;
+import br.com.supersim.service.people.domain.State;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -26,8 +26,8 @@ public class Candidate {
 
     @NotNull
     @Column(columnDefinition = "JSONB")
-    @Convert(converter = PhaseConverter.class)
-    private Phase phase = Phase.APPLICATION;
+    @Convert(converter = StateConverter.class)
+    private State state = State.APPLICATION;
 
     @NotNull
     private String position;
@@ -73,12 +73,12 @@ public class Candidate {
         this.position = position;
     }
 
-    public Phase getPhase() {
-        return phase;
+    public State getState() {
+        return state;
     }
 
-    public void setPhase(Phase phase) {
-        this.phase = phase;
+    public void setState(State state) {
+        this.state = state;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Candidate {
             return false;
         if (!position.equals(candidate.position))
             return false;
-        return phase == candidate.phase;
+        return state == candidate.state;
     }
 
     @Override
@@ -107,7 +107,7 @@ public class Candidate {
         result = 31 * result + name.hashCode();
         result = 31 * result + area.hashCode();
         result = 31 * result + position.hashCode();
-        result = 31 * result + phase.hashCode();
+        result = 31 * result + state.hashCode();
         return result;
     }
 
@@ -118,7 +118,7 @@ public class Candidate {
                 ", name='" + name + '\'' +
                 ", area='" + area + '\'' +
                 ", position='" + position + '\'' +
-                ", phase='" + phase + '\'' +
+                ", state='" + state + '\'' +
                 '}';
     }
 }

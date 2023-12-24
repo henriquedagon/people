@@ -3,15 +3,15 @@ import Select from "../../UI/Select";
 import Button from "../../UI/Button";
 
 import AreaService from "../../../service/area-service";
-import PhaseService from "../../../service/phase-service";
+import StateService from "../../../service/state-service";
 
 import classes from "./CandidatesForm.module.css"
 
 const CandidatesForm = props => {
-    const phaseSelectRef = useRef()
+    const stateSelectRef = useRef()
     const areaSelectRef = useRef()
     const [areas, setAreas] = useState([])
-    const [phases, setPhases] = useState([])
+    const [states, setStates] = useState([])
     const [loading, setLoading] = useState(true)
 
 
@@ -20,9 +20,9 @@ const CandidatesForm = props => {
         const loadData = async () => {
             setLoading(true)
             const retrievedAreas = await AreaService.getAllAreas()
-            const retrievedPhases = await PhaseService.getAllPhases()
+            const retrievedStates = await StateService.getAllStates()
             setAreas(retrievedAreas)
-            setPhases(retrievedPhases)
+            setStates(retrievedStates)
             setLoading(false)
         }
         // Call load data
@@ -32,7 +32,7 @@ const CandidatesForm = props => {
 
     const submitHandler = event => {
         props.onChangeFilters({
-            phase: phaseSelectRef.current.value,
+            state: stateSelectRef.current.value,
             area: areaSelectRef.current.value
         })
     }
@@ -40,9 +40,9 @@ const CandidatesForm = props => {
     const form =         
         <div className={classes["candidates-form"]}>
             <Select 
-                label="Phase" 
-                ref={phaseSelectRef} 
-                options={phases}
+                label="State"
+                ref={stateSelectRef} 
+                options={states}
             />
             <Select 
                 label="Area" 

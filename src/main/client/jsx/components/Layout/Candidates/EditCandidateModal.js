@@ -6,7 +6,7 @@ import Select from "../../UI/Select";
 
 import classes from "./EditCandidateModal.module.css"
 
-const phases = [
+const states = [
     { id: 1, value: "application", name: "Application" },
     { id: 2, value: "approved", name: "Approved" },
     { id: 3, value: "declined", name: "Declined" }
@@ -21,7 +21,7 @@ const areas = [
 
 const EditCandidateModal = (props) => {
     const nameRef = useRef()
-    const phaseRef = useRef()
+    const stateRef = useRef()
     const positionRef = useRef()
     const areaRef = useRef()
 
@@ -43,12 +43,12 @@ const EditCandidateModal = (props) => {
         event.preventDefault()
         const data = {
             name: nameRef.current.value,
-            phase: phaseRef.current.value,
+            state: stateRef.current.value,
             position: positionRef.current.value,
             area: areaRef.current.value,
         }
         editCandidateHandler(data)
-        cleanRef([nameRef, phaseRef, positionRef, areaRef])
+        cleanRef([nameRef, stateRef, positionRef, areaRef])
         props.onClose()
     }
 
@@ -68,11 +68,11 @@ const EditCandidateModal = (props) => {
                         }}
                 />
                 <Select 
-                    label="Phase" 
-                    ref={phaseRef} 
-                    options={phases}
+                    label="State" 
+                    ref={stateRef} 
+                    options={states}
                     input={{
-                        selected: props.candidate.phase
+                        selected: props.candidate.state
                     }}
                 />
                 <Select 
@@ -80,7 +80,7 @@ const EditCandidateModal = (props) => {
                     ref={areaRef}
                     options={areas}
                     input={{
-                        selected: props.candidate.phase
+                        selected: props.candidate.state
                     }}
                 />
                  <Button label="Send"/>

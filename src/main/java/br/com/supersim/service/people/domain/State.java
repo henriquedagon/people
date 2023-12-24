@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @ApiModel
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum Phase implements Serializable {
+public enum State implements Serializable {
 
     DECLINED(0L, "declined", "Declined"),
 
@@ -29,7 +29,7 @@ public enum Phase implements Serializable {
 
     private String name;
 
-    Phase(Long id, String value, String name) {
+    State(Long id, String value, String name) {
         this.id = id;
         this.value = value;
         this.name = name;
@@ -47,25 +47,26 @@ public enum Phase implements Serializable {
         return name;
     }
 
-    public static Map<String, Object> toJson(Phase phase) {
-        return Map.of("id", phase.getId(),
-                "value", phase.getValue(),
-                "name",phase.getName());
+    public static Map<String, Object> toJson(State state) {
+        return Map.of("id", state.getId(),
+                "value", state.getValue(),
+                "name", state.getName());
     }
 
-    public static List<Phase> getAll() {
-        return Arrays.stream(Phase.values()).collect(Collectors.toList());
+    public static List<State> getAll() {
+        return Arrays.stream(State.values()).collect(Collectors.toList());
     }
 
     public static List<Map<String, Object>> getAllAsJson() {
-        return Arrays.stream(Phase.values())
-                .map(Phase::toJson)
+        return Arrays.stream(State.values())
+                .map(State::toJson)
                 .collect(Collectors.toList());
     }
 
-    public static Phase getById(Long id) {
-        for(Phase p : values()) {
-            if(p.id.equals(id)) return p;
+    public static State getById(Long id) {
+        for (State p : values()) {
+            if (p.id.equals(id))
+                return p;
         }
         return null;
     }
@@ -73,19 +74,18 @@ public enum Phase implements Serializable {
     /**
      * Gets the value of the enum from a given JSON.
      *
-     * @param  id              Identifier.
-     * @return                 The value of the enum from a given JSON.
+     * @param id Identifier.
+     * @return The value of the enum from a given JSON.
      */
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public static Phase fromJson(
-            @JsonProperty(value = "id")
-            final Long id) {
-        return Phase.getById(id);
+    public static State fromJson(
+            @JsonProperty(value = "id") final Long id) {
+        return State.getById(id);
     }
 
     @Override
     public String toString() {
-        return "Phase{" +
+        return "State{" +
                 "id=" + id +
                 ", value='" + value + '\'' +
                 ", name='" + name + '\'' +

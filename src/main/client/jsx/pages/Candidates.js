@@ -13,7 +13,7 @@ const candidatesDescription = {
     name: 'Name',
     area: 'Area',
     position: 'Position',
-    phase: 'Phase'
+    state: 'State'
 }
 
 const Candidates = props => {

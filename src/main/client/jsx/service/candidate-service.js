@@ -9,8 +9,8 @@ const CandidateService = {
     },
 
     getCandidates : async (selectedFilters) => {
-        const {phase, area} = selectedFilters
-        return await api.get(`/candidate/search?phaseValue=${phase}&areaValue=${area}`)
+        const {state, area} = selectedFilters
+        return await api.get(`/candidate/search?stateValue=${state}&areaValue=${area}`)
             .then(response => {return response.data})
     },
 

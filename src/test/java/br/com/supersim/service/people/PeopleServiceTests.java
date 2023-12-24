@@ -1,7 +1,7 @@
 package br.com.supersim.service.people;
 
 import br.com.supersim.service.people.domain.Area;
-import br.com.supersim.service.people.domain.Phase;
+import br.com.supersim.service.people.domain.State;
 import br.com.supersim.service.people.model.Candidate;
 import br.com.supersim.service.people.service.CandidateService;
 import org.junit.jupiter.api.AfterEach;
@@ -49,7 +49,7 @@ class PeopleServiceTests {
 		Assertions.assertEquals(name, createdCandidate.getName());
 		Assertions.assertEquals(position, createdCandidate.getPosition());
 		Assertions.assertEquals(area, createdCandidate.getArea());
-		Assertions.assertEquals(Phase.APPLICATION, createdCandidate.getPhase());
+		Assertions.assertEquals(State.APPLICATION, createdCandidate.getState());
 	}
 
 }

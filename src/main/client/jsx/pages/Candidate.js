@@ -6,6 +6,8 @@ import DataRow from "../components/UI/DataRow";
 import DataContainer from "../components/UI/Container/DataContainer";
 import PanelContainer from "../components/UI/Container/PanelContainer";
 
+import { stars } from "../functions/stars";
+
 const Candidate = () => {
     const params = useParams()
     const [candidateData, setCandidateData] = useState({})
@@ -36,8 +38,8 @@ const Candidate = () => {
                 value={candidateData?.position}
             />                
             <DataRow
-                field='phase'
-                value={candidateData?.phase?.name}
+                field='state'
+                value={candidateData?.state?.name}
             />                
             <DataRow
                 field='area'
@@ -49,16 +51,16 @@ const Candidate = () => {
     const scoreDataTable = 
         <DataContainer>
             <DataRow
-                field='RH Phase'
-                value='★★★'
+                field='RH Score'
+                value={stars(3)}
             />
             <DataRow
-                field='Technical Phase'
-                value='★★★★'
+                field='Technical Score'
+                value={stars(4)}
             />
             <DataRow
-                field='Director Phase'
-                value='★★★★★'
+                field='Director Score'
+                value={stars(5)}
             />
         </DataContainer>
 

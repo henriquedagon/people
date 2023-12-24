@@ -1,7 +1,7 @@
 package br.com.supersim.service.people;
 
 import br.com.supersim.service.people.domain.Area;
-import br.com.supersim.service.people.domain.Phase;
+import br.com.supersim.service.people.domain.State;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
@@ -24,20 +24,20 @@ class PeopleSerializationTests {
 	@Test
 	public void testSerializeEnums() {
 		String data = null;
-		String phase = null;
+		String state = null;
 		try {
 			data = mapper.writeValueAsString(Area.DATA);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		try {
-			phase = mapper.writeValueAsString(Phase.APPLICATION);
+			state = mapper.writeValueAsString(State.APPLICATION);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 
 		Assertions.assertEquals("{\"id\":1,\"value\":\"data\",\"name\":\"Data\"}", data);
-		Assertions.assertEquals("{\"id\":0,\"value\":\"application\",\"name\":\"Application\"}", phase);
+		Assertions.assertEquals("{\"id\":0,\"value\":\"application\",\"name\":\"Application\"}", state);
 	}
 
 }
